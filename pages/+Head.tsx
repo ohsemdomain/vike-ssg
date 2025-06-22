@@ -12,13 +12,7 @@ export default function HeadDefault() {
 				src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_ENV__GOOGLE_ANALYTICS}`}
 			/>
 			<script
-				dangerouslySetInnerHTML={{
-					__html: `window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', '${import.meta.env.PUBLIC_ENV__GOOGLE_ANALYTICS}');`,
-				}}
+				src={`/analytics.js?id=${import.meta.env.PUBLIC_ENV__GOOGLE_ANALYTICS}`}
 			/>
 		</>
 	);
