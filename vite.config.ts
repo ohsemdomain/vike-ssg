@@ -9,19 +9,36 @@ export default defineConfig({
     target: "es2022",
     rollupOptions: {
       output: {
-        manualChunks: {
-          // Separate React into its own chunk for better caching
-          react: ['react', 'react-dom'],
-          // Keep vike separate
-          vike: ['vike', 'vike-react']
+        manualChunks: (id) => {
+          // Separate React into its own chunk
+          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
+            return 'react';
+          }
+          // Separate Vike into its own chunk
+          if (id.includes('node_modules/vike/') || id.includes('node_modules/vike-react/')) {
+            return 'vike';
+          }
+          // Put other large dependencies in vendor chunk
+          if (id.includes('node_modules/')) {
+            return 'vendor';
+          }
         }
       }
     },
     // Optimize chunk size
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 500,
+    // Enable minification and tree-shaking
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.trace'],
+      },
+    },
   },
-  // Optimize for production
-  esbuild: {
-    drop: ['console', 'debugger'],
+  // Optimize dependencies
+  optimizeDeps: {
+    include: ['react', 'react-dom'],
   },
 });

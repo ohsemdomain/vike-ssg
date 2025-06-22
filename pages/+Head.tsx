@@ -4,13 +4,13 @@ import logoUrl from "../assets/logo.svg";
 
 export default function HeadDefault() {
 	const gaId = import.meta.env.PUBLIC_ENV__GOOGLE_ANALYTICS;
+	const isProduction = import.meta.env.PROD;
 	const isValidGaId = gaId && gaId !== "G-XXXXXXXXXX" && !gaId.includes("undefined");
 
 	return (
 		<>
 			<link rel="icon" href={logoUrl} />
 			
-			{/* Only load Google Analytics if valid ID is provided */}
 			{isValidGaId && (
 				<>
 					<script
