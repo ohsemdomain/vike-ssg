@@ -1,17 +1,12 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import vike from 'vike/plugin'
-
+import { pages } from "vike-cloudflare";
+import tailwindcss from "@tailwindcss/vite";
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
+import vike from "vike/plugin";
 
 export default defineConfig({
-  plugins: [
-    react(),
-    vike({
-      prerender: true
-    })
-  ],
+  plugins: [vike(), react(), tailwindcss(), pages()],
   build: {
-    outDir: 'dist/client',
-    emptyOutDir: true
-  }
-})
+    target: "es2022",
+  },
+});

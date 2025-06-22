@@ -17,7 +17,8 @@
     ],
     "types": [
       "vite/client",
-      "vike-react"
+      "vike-react",
+      "vike-cloudflare/types"
     ],
     "jsx": "react-jsx",
     "jsxImportSource": "react"
