@@ -6,6 +6,8 @@ import Layout from "../layouts/LayoutDefault.js";
 // https://vike.dev/config
 
 export default {
+  prerender: true,
+
   // https://vike.dev/Layout
   Layout,
 
